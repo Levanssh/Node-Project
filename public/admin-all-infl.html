@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>All Influencers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js"></script>
+    <script>
+        var module = angular.module("MyModule", []);
+        var controller = module.controller("MyController", function ($scope, $http) {
+            $scope.jsonAryAll = [];
+            $scope.selectedInfluencer = {};
+            $scope.fillAllInfluencers = function () {
+                let url = "/fetch-all-infl";
+                $http.get(url).then(
+                    function (response) {
+                        $scope.jsonAryAll = response.data;
+                    },
+                    function (error) {
+                        alert("Error fetching data");
+                    }
+                );
+            };
+            $scope.showDetails = function (influencer) {
+                $scope.selectedInfluencer = influencer;
+                var myModal = new bootstrap.Modal(document.getElementById('detailsModal'));
+                myModal.show();
+            };
+        });
+    </script>
+    <style>
+        * {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        body {
+            background-color: #e3856b;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .card {
+            width: 12rem;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+            background: white;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            height: 150px;
+            object-fit: cover;
+        }
+        .card-title {
+            text-align: center;
+            margin: 10px 0;
+            color: #333;
+            font-weight: bold;
+        }
+        .modal-header {
+            background-color: teal;
+            color: white;
+            text-align: center;
+        }
+        .modal-header h5 {
+            margin: 0 auto;
+        }
+        .modal-body {
+            padding: 20px;
+        }
+        .modal-body p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .modal-body strong {
+            color: black;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: teal;
+            color: white;
+            margin-top: 30px;
+        }
+        .dashboard-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body ng-app="MyModule" ng-controller="MyController" ng-init="fillAllInfluencers()">
+    <div class="container mt-5">
+        <h1 class="dashboard-title">All Influencers</h1>
+        <div class="card-container">
+            <div class="card" ng-repeat="obj in jsonAryAll" ng-click="showDetails(obj)">
+                <img src="uploads/{{obj.picpath}}" class="card-img-top" alt="Influencer Picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{obj.iname}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailsModalLabel">Influencer Details</h5>
+                    <button style="background-color: white;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <img src="uploads/{{selectedInfluencer.picpath}}" class="img-fluid rounded" alt="Influencer Picture">
+                        </div>
+                        <div class="col-md-8">
+                            <p><strong>Name:</strong> {{selectedInfluencer.iname}}</p>
+                            <p><strong>Email:</strong> {{selectedInfluencer.email}}</p>
+                            <p><strong>Gender:</strong> {{selectedInfluencer.gender}}</p>
+                            <p><strong>DOB:</strong> {{selectedInfluencer.dob}}</p>
+                            <p><strong>Address:</strong> {{selectedInfluencer.address}}</p>
+                            <p><strong>City:</strong> {{selectedInfluencer.city}}</p>
+                            <p><strong>Contact:</strong> {{selectedInfluencer.contact}}</p>
+                            <p><strong>Fields:</strong> {{selectedInfluencer.fields}}</p>
+                            <p><strong>Instagram:</strong> 
+                                <a href="https://www.instagram.com/{{selectedInfluencer.insta}}" target="_blank">
+                                    {{selectedInfluencer.insta}}
+                                </a>
+                            </p>
+                            <p><strong>Facebook:</strong> 
+                                <a href="https://www.facebook.com/{{selectedInfluencer.fb}}" target="_blank">
+                                    {{selectedInfluencer.fb}}
+                                </a>
+                            </p>
+                            <p><strong>YouTube:</strong> 
+                                <a href="https://www.youtube.com/{{selectedInfluencer.youtube}}" target="_blank">
+                                    {{selectedInfluencer.youtube}}
+                                </a>
+                            </p>
+                            <p><strong>Other Details:</strong> {{selectedInfluencer.otheri}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button style="background-color: red;" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
