@@ -45,6 +45,20 @@
                 height: 175px;
             }
         }
+
+        .card{
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .card:hover{
+            /* top: -10px; */
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            transform: scale(1.1);
+
+            
+        }
+
     </style>
     <script>
         $(document).ready(function () {
@@ -121,10 +135,10 @@
     </script>
 </head>
 
-<body style="background-color: #e3856b;">
+<body style="background-color: #CADCFC;">
     <header>
         <nav class="navbar navbar-expand-lg bg-teal" style="width: 100%;">
-            <div class="container-fluid" style="background-color: teal; margin-top: -10px;">
+            <div class="container-fluid" style="background-color: #00246B; margin-top: -10px;">
                 <a class="navbar-brand" href="/"
                     style="color: white; font-family: 'Times New Roman', Times, serif; font-size: 35px;">
                     Connexus
@@ -135,36 +149,37 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#service_tag"
+                                style="font-family: 'Times New Roman', Times, serif; margin: 4px; font-size: larger;">Our Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#team_tag"
+                                style="font-family: 'Times New Roman', Times, serif; margin: 4px; font-size: larger;">Our Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#reach_tag"
+                                style="font-family: 'Times New Roman', Times, serif; margin: 4px; font-size: larger;">Reach Us</a>
+                        </li>
                         <li class="nav-item">
                             <button type="button" class="btn btn-link text-white" data-bs-toggle="modal"
-                                data-bs-target="#signupModal" style="font-family: 'Times New Roman', Times, serif;">
+                                data-bs-target="#signupModal" style="font-family: 'Times New Roman', Times, serif; border: 1px #CADCFC solid; margin: 4px; font-size: large;">
                                 Sign Up
                             </button>
                         </li>
                         <li class="nav-item">
                             <button type="button" class="btn btn-link text-white" data-bs-toggle="modal"
-                                data-bs-target="#loginModal" style="font-family: 'Times New Roman', Times, serif;">
+                                data-bs-target="#loginModal" style="font-family: 'Times New Roman', Times, serif; border: 1px #CADCFC solid; margin: 4px; font-size: large;">
                                 Login
                             </button>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#service_tag"
-                                style="font-family: 'Times New Roman', Times, serif;">Our Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#team_tag"
-                                style="font-family: 'Times New Roman', Times, serif;">Our Team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#reach_tag"
-                                style="font-family: 'Times New Roman', Times, serif;">Reach Us</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <main style="background-color: #e3856b;">
+    <main style="background-color: #CADCFC;">
         <!---------------------------- Carousal -------------------------------->
         <!-- <center> -->
         <br>
@@ -258,7 +273,7 @@
                         <div class="card-body">
                             <h2 class="card-title"
                                 style="text-align: center; font-family: 'Times New Roman', Times, serif;">Under the
-                                Guidance</h2>
+                                Guidance of</h2>
                             <p class="card-text">
                             <h3 style="text-align: center; font-family: 'Times New Roman', Times, serif;">Rajesh Bansal
                             </h3>
@@ -303,7 +318,7 @@
         </div>
         <br>
     </main>
-    <footer style="text-align: center; padding: 10px; background-color: teal; color: white;">
+    <footer style="text-align: center; padding: 10px; background-color: #00246B; color: white;">
         <p style="font-family: 'Times New Roman', Times, serif;">&copy; 2024 Connexus. All rights reserved.</p>
     </footer>
     <!------------------------------Modals--------------------------------->

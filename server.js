@@ -5,9 +5,14 @@ let app = express();
 app.use(express.static("public"));
 app.use(express.urlencoded(true));
 app.use(fileuploader());
+
+
+
 app.listen(1500, function () {
     console.log("Server Started Ji :-) ")
 })
+
+
 let config = {
     host: "127.0.0.1",
     user: "root",
